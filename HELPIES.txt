@@ -1,0 +1,320 @@
+###############################################################################################################################
+REGULAR EXPRESIONS	
+import re #Regular Expressions library
+find('to_find') #returns -1 if it doesnt find it
+re.search('to_find', object) #method of the REGULAR EXPRESSIONS library (returns TRUE or FALSE)
+open('file_name.txt') #method opens the specified file
+rstrip() #basically the position
+startswith() #returns True or False # using the re.search('^word', object)
+endswith() #returns True or False # using the re.search('word^', object)
+re.findall('[0-9]+', x) #[0-9] refers to a single number btwn those two and the '+' is for findinf more digits
+	   [AEIOU] #to find Upper case vowels.
+y = re.findall('^F.+?:', x) #the '?' stops when it find the last character ':' NOT GREEDY
+
+line = 'From stephen.marquard@uct.ac.za Sat Jan 5 09:14:16'
+y = re.findall('@([^ ]*)', line) #looking through the string until it finds an '@', extract after it intil it finds a space
+                            #* followed by any number of characters.
+                            #[^ ] Match non-blanck character EVERYTHING BUT 
+###############################################################################################################################
+- The dot character matches any character
+
+- If you add the asterisk character, the character is “any number of times”
+
+X—Sieve: CMU Sieve 2,3 A * _
+X-DSPAM-Result: Innocent  n a                 (^X.*:)
+X—DSPAM—Con£idem:e: 0 . B475
+X—Content—Type—Message—Body2 text/plain
+
+Example (^X.*:) It means that Im looking for an X in the begining(^), followed by any number of characters
+		(.*), followed by a (:). SPECIAL CHARACTERS(^, ., *)
+
+Example (^X-\S+:) Starts with X- (^), Match any non-whitespace character(X-Plane dasdas:)(FALSE) (\S)
+		  ,(+) One or many times (X-Sieve)(TRUE), followed by a (:)
+
+################################################################################################################################
+RE SYMBOLS
+^ Matches the beginning of a line
+$ Matches the end of the line
+. Matches any character
+\s Matches whitespace
+\S Matches any non-whitespace character
+* Repeats a character zero or more times
+*? Repeats a character zero or more times
+ (non-greedy)
++ Repeats a character one or more times
++? Repeats a character one or more times
+ (non-greedy)
+[aeiou] Matches a single character in the listed set
+[^XYZ] Matches a single character not in the listed set
+[a-z0-9] The set of characters can include a range
+( Indicates where string extraction is to start
+) Indicates where string extraction is to end
+#################################################################################################################################
+#################################################################################################################################
+NETWORK TECHNOLOGY
+NETWORK ARQUITECTURE-LAYERED ARQUITECTURE
+-Built on top of IP(Internet Protocol)
+-Assumes IP might lose some data-stores and retransmits data if it seems to be lost
+-Handles "flow control" using a transmit window
+-Provides a nice reliable pipi
++http://en.wikipedia.org/wiki/Internet_Protocol_Suite.
+
+$COMMUNICATION BETWEEN TWO APPLICATIONS
+$$$$$The idea is, as you can write a piece of code, you will write a Python program that will talk out the transport layer over to an application on another server.This is the network over here. Another server and gets data back and that's what we're going to show you how to do.
+
+$TCP CONNECTIONS/SOCKETS
+"In computer nerworking, a internet socket or network socket is an endpoint of a bidirectional inter-process communication flow across an internet Protocol-based computer network, such as the internet".
+
+$TCP PORT NUMBERS
+-A port is in application-specific or process-specific software communications endpoint
+-It allows multiple networked applications to coexist on the same server.
+-There is a list of well-known TCP port numbers.
+$$PORT '80' IS THE ONE WE WILL PLAY MORE WITH SINCE IS THE ONE RESPONSABLE OF CONNECTING WITH THE SERVER.
+
++Telnet(23)-Login               +IMAP(143/220/993)-Mail Retrieval
++SSH(22)-Secure Login		+POP(109/110)-Mail Retrieval
+-HTTP(80)*			+DNS(53)-Domain Name
+-HTTPS(443)-Secure		+FTP(21)-File Transfer
++SMTP(25)-Mail
+
+$www = World Wide Web
+$HTTP = Hypertext Transfer Protocol
+$URL  = Uniform source location
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+SOCKETS IN PYTHON
+
+import socket #socket library
+
+mysocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #creating a mysocket-object
+mysocket.connect(('data.pr4e.org', 80)) #using the connect method: Host,Port
+
+
+$$$
+INFORMATION TO RECEIVE
+#HTTP/1.1 200 OK
+#Date: Sat, 23 May 2020 17:47:34 GMT
+#Server: Apache/2.4.18 (Ubuntu)                     HEADERS(METADATA)
+#Last-Modified: Sat, 13 May 2017 11:22:22 GMT
+#ETag: "a7-54f6609245537"
+#Accept-Ranges: bytes
+#Content-Length: 167
+#Cache-Control: max-age=0, no-cache, no-store, must-revalidate
+#Pragma: no-cache
+#Expires: Wed, 11 Jan 1984 05:00:00 GMT
+#Connection: close
+#Content-Type: text/plain
+#
+#But soft what light through yonder window breaks
+#It is the east and Juliet is the sun             BODY(DATA)
+#Arise fair sun and kill the envious moon
+#Who is already s
+#ick and pale with grief
+$$$
+#######################################################################################################################################
+
+(ASCII-CHARACTERS)
+print(ord('H')) #prints the respective numeric ASCII value for a specified character. (0-256)...before internet, language barrier
+'72'
+#uppercase numbers have higher numeric values since they are found at the end. 
+
+$$$UNICODE enclosure all posible characters for every single country.
++UTF-16-Fixed lenght - Two bytes
++UTF-32-Fixed Lenght - Four bytes
++UTF-8 1-4 bytes (THE BEST)
+
+-Upwards compatible with ASCII
+-Automatic detection between ASCII and UTF-8
+=UTF-8 is recommended practice for encoding data to be exchanged between systems.
+
+@All strings in python are unicode.(Python3)
+@bytes are different from strings (Python3-Python2)
+
+
+
+#######################################################################################################################################	x 
+PYTHON STRINGS TO BYTES
+-When we communicate with an external source like a network socket we send BYTES: encode()
+-When we receive information from an externarl source like a network socket we decodify that info from Bytes to Strings: decode()
+#######################################################################################################################################
+WEB SCRAPPING
+-when a program or a script pretends  to be a browser and retrieves web pages, looks at those web pages, extract information
+ ,and then looks at more web pages.
+-Search engines scrape web pages - we call this "spidering the web" or "web crawling"
+
+BEAUTIFUL SOUP-easy way out. install library
+#printing urls
+import urllib.request, urllib.parse, urllib.error #request, parse, error
+from bs4 import Beautifulsoup
+import ssl
+
+#Ignore SSL certificate errors
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+url = input('Enter - ')
+html = ur11ib.request.ur1open(ur1).read()
+soup = Beautifu1Soup(htm1, 'htm1.parser')
+
+# Retrieve all of the anchor tags
+
+tags = soup('a')
+
+for tag in tags:
+print(tag.get('href', None))
+
+
+#####################################################################################################################################
+INTRODUCING APIS
+-Agreed way to represent data going between applications and across networks: XML, JSON formats.
+SENDING DATA ACROSS NET: Python dics[Serialize]-Java Hashmap[De-Serialize] {Wire protocol}:
+	
+$Take Python-produce json, send json, and that json will be received in the other side.
+
+XML: eXtensible Markup Language
+:works just like html, TAGS <person><name>Chuck</name><phone>31466118923</phone></person>
+PORPOSE: share structured data
+Started as (SGML)
+SELF CLOSING TAG FOR NON CONTENT TAGS <end type="init"/>
+
+PATHS: /person/name Chuck 
+       /person/phone 31466118923
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+XML schema
+-Description of the legal format of an XML document
+
+-Expressed in terms of constraints on the structure and content of
+documents
+
+-Often used to specify a “contract” between systems - “My system will
+only accept XML that conforms to this particular Schema.”
+
+-If a particular piece of XML meets the specification of the Schema - it
+is said to ‘‘validate''
+
+XML VALIDATION:
+Act of taking a document and a schema contract and then send it to the validator.
+
+XML DOCUMENT AND XML SCHEMA CONTRACT TO VALIDATOR(XSD):
+<person>
+ <lastname>Severance</lastname>
+ <age>17</age>
+ <dateborn>2001-04-17</dateborn>
+ <full_name>Tove Refsnes</full_name>
+ <child_name>Hege</child_name>
+ <child_name>Stale</child_name>  //0:10 
+ <child_name>Jim</child_name>
+ <child_name>Borge</child_name>  
+</person>
+///////////////// CONTRACT IS JUST ASKING QUESTIONS OF WHATS IN THERE 
+<xs:complexType name="person"> //elemnt that can have children
+ <xs:sequence> //sequence of tags
+  <xs:element name="lastname"type="xs:string"/> //elements
+  <xs:element name="age"type="xs:integer"/>
+  <xs:element name="borndate"type="xs:date"/>
+  <xs:element name="full_name"type="xs:string"minOccurs="1"maxOccurs="1"/>
+  <xs:element name="child_name"type="xs:string"minOccurs="0"maxOccurs="10"/>
+ <xs:sequence>
+</xs:complexType>
+
+
+********************
+<xs:restriction base="xs:string"> //restricts the content tag to those values.
+ <xs:enumeration value="FR">
+ <xs:enumeration value="DE">
+ <xs:enumeration value="UK">
+ <xs:enumeration value="US">
+</xs:restriction>
+
+********************
+maxOccurs="unbounded" //no limit
+
+
+********************
+xs:positiveInteger 
+
+********************
+use="requiered" //this element is needed
+********************
+
+
+$$$$$$$$$$$$$$$$$
+Types = xs:string(James), xs:date(2002-09-24), xs:dateTime(2002-05-30T09:30:10Z), xs:decimal(999.50), xs:integer(30). 
+#Time is common to represent in UTC/GMT, depending on the spot in the world. T(time), Z(zone).
+
+################################################################################################
+JavaScript Object Notation(JSON) easier than XML and useful
+
+import json   #importing it
+data = '''{ #complex string    uses '{' as dictionaries.
+"name" 2 "Chuck",
+   "phone" : {
+     "type" : "intl",  #child
+     "number" : "+1 734 303 4456"
+   },
+   "email" : {  #parent
+     "hide" : "yes"
+   }	
+}'''
+
+info = json.loads(data)  #entirely replaces the for loop    ##INFO Object as python dictionary
+print('Name:',info["name"])
+print('Hide:',info[“email"]["hide"])
+
+
+$JASON represents data as nested "lists" and "dictionaries"
+
+##############################################################################
+SERVICE ORIENTATED APROACH
+-Most non-trival web applications use services
+-They use services from other applications
+	-Credit Card Charge
+	-Hotel Reservation systems
+-Services publish the rules applications must follow to make use of the service(API)
+
+
+MULTIPLE SYSTEMS
+-initially-two systems cooperate and split the problem
+-As data/service becomes useful-multiple application want to use the information/application
+
+$Comunication between systems with service layers that, sorted in a common format to use
+ elsewhere., triangle to square => triangle/SL/sphere/SL/square\
+#############################################################################
+USING APPLICATION PROGRAMMING INTERFACES(APIS)
+
++Google geocoding API ex:https://maps.googleapis.com/maps/api/geocode/xml
+*(GEOCODING)
+
++Instead of typing this(https://maps.googleapis.com/maps/api/geocode/json?address=Ann+Arbor%2C+MI)
+
+
+SECURING API REQUESTS
+
++The compute resources to run these APIs are not "Free"
++The data provided by these APIs is usually valuable
++The data prividers might limit the number of requests per day, demand an API"key", or even 
+ charge for usage
++They might change the rules as things progress...
+
+
+#########$$$$$$$$$$$$$$$$#################$$$$$$$$$$$$$$#############$$$$$$$$$$$$$##########
+TWITTER
+-Change the hidden values:
+	+costumer_key
+	+costumer_secret
+	+token_key
+	+token_secret
+#
+
+
+
+
+ print('Remaining', headers['x-rate-limit-remaining']) #as the number of times I can make a request per day.
+
+
+
+
+
+
+
+
